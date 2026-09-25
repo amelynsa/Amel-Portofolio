@@ -75,15 +75,20 @@ $(document).ready(function() {
   //  Typed Js
   // ========================================================================= //
 
-  var typed = $(".typed");
-
-  $(function() {
-    typed.typed({
-      strings: ["Amelia Yunisa.", "Web Developer.", "Front-End Developer.", "UI/UX Design."],
-      typeSpeed: 100,
-      loop: true,
-    });
+  $(document).ready(function() {
+  $(".typed").typed({
+    strings: [
+      "Amelia Yunisa.",
+      "Quality Assurance.",
+      "System Analyst.",
+      "Data Analyst."
+    ],
+    typeSpeed: 100,
+    backSpeed: 50,
+    backDelay: 1500,
+    loop: true
   });
+});
 
   
 
@@ -108,17 +113,38 @@ $(document).ready(function() {
   // ========================================================================= //
 
 
-  var portfolioIsotope = $('.portfolio-container').isotope({
+  // var portfolioIsotope = $('.portfolio-container').isotope({
+  //   itemSelector: '.portfolio-thumbnail',
+  //   layoutMode: 'fitRows'
+  // });
+
+  // $('#portfolio-flters li').on( 'click', function() {
+  //   $("#portfolio-flters li").removeClass('filter-active');
+  //   $(this).addClass('filter-active');
+
+  //   portfolioIsotope.isotope({ filter: $(this).data('filter') });
+  // });
+
+  $(window).on('load', function () {
+
+  var $container = $('.portfolio-container');
+
+  // INIT isotope setelah semua gambar load
+  $container.isotope({
     itemSelector: '.portfolio-thumbnail',
     layoutMode: 'fitRows'
   });
 
-  $('#portfolio-flters li').on( 'click', function() {
-    $("#portfolio-flters li").removeClass('filter-active');
+  // FILTER
+  $('#portfolio-flters li').on('click', function () {
+    $('#portfolio-flters li').removeClass('filter-active');
     $(this).addClass('filter-active');
 
-    portfolioIsotope.isotope({ filter: $(this).data('filter') });
+    var filterValue = $(this).attr('data-filter');
+    $container.isotope({ filter: filterValue });
   });
+
+});
 
 
   // ========================================================================= //
@@ -156,3 +182,5 @@ $(document).ready(function() {
   magnifPopup();
 
 });
+
+
